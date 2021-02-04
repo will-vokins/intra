@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" id="rootHero">
+    <div class="container">
+
+        <div class="hero-wrapper">
+          <h1>Freelance, Enhanced.</h1>
+          <p class="lead">Our bespoke framework allows developers anywhere in the world to open an 
+              enhanced<br/> communication channel with <strong>Unlimited</strong> clients, boosting your 
+              productivity<br/> while providing unprecedented transparency and peace of mind to your customers.</p>
+        </div>
+  
+      </div>
+</div>
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img class="img-circle" src="{{url_for('static', filename='img/icons/hand-shake.png')}}" alt="Build Trust" width="140" height="140">
+        <h2>Build Trust</h2>
+        <p>Generate positive rapport with your customers by providing invaluable insights. 
+            Our platform allows your customers to see <strong>exactly</strong> where their 
+            money is going, providing them with a consistent sense of progress and reassurance.</p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="img-circle" src="{{url_for('static', filename='img/icons/chart-1.png')}}" alt="Boost Sales" width="140" height="140">
+        <h2>Boost Productivity</h2>
+        <p>We offer a robust CRM toolbox that takes care of your customers for you. Intra
+            removes the pain of invoicing and project management, allowing you to spend
+            your time on what matters most; getting shit done.
+        </p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="img-circle" src="{{url_for('static', filename='img/icons/coins.png')}}" alt="No Fees" width="140" height="140">
+        <h2>No Hidden Fees</h2>
+        <p>Neither you, nor your clients will be subject to additional charges, even when
+            taking payments. We offer one subscription package. No nonsense tier system.
+            Once you subscribe, you get full access to everything Intra has to offer.
+        </p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="https://cdn.dribbble.com/users/345970/screenshots/3875272/shot.png" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" src="https://i.pinimg.com/originals/d5/a8/05/d5a805019b91a7415c4165c292daa759.png" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="https://i.pinimg.com/originals/9b/8c/12/9b8c126fac34633c58901395b2650c52.png" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+{% endblock content %}
