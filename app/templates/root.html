@@ -1,16 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container-fluid" id="rootHero">
-    <div class="container">
-
-        <div class="hero-wrapper">
-          <h1>Freelance, Enhanced.</h1>
-          <p class="lead">Our bespoke framework allows developers anywhere in the world to open an 
-              enhanced<br/> communication channel with <strong>Unlimited</strong> clients, boosting your 
-              productivity<br/> while providing unprecedented transparency and peace of mind to your customers.</p>
-        </div>
-  
-      </div>
+<div class="container-fluid nopadding" id="rootHero">
+    <div class="background">
+        <div class="container">
+            <div class="hero-wrapper">
+              <h1>Freelance, Enhanced.</h1>
+              <p class="lead">Our bespoke framework allows developers anywhere in the world to open an 
+                  enhanced<br/> communication channel with <strong>Unlimited</strong> clients, boosting your 
+                  productivity<br/> while providing unprecedented transparency and peace of mind to your customers.</p>
+            </div>
+      
+          </div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+       <div class="cube"></div>
+    </div>
 </div>
 
 <div class="container marketing">
@@ -23,16 +29,17 @@
         <p>Generate positive rapport with your customers by providing invaluable insights. 
             Our platform allows your customers to see <strong>exactly</strong> where their 
             money is going, providing them with a consistent sense of progress and reassurance.</p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <br/>
+        <p><a class="callToAction" href="#" role="button">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <img class="img-circle" src="{{url_for('static', filename='img/icons/chart-1.png')}}" alt="Boost Sales" width="140" height="140">
         <h2>Boost Productivity</h2>
         <p>We offer a robust CRM toolbox that takes care of your customers for you. Intra
             removes the pain of invoicing and project management, allowing you to spend
-            your time on what matters most; getting shit done.
-        </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            your time on what matters most; getting shit done.</p>
+            <br/>
+        <p><a class="callToAction" href="#" role="button">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <img class="img-circle" src="{{url_for('static', filename='img/icons/coins.png')}}" alt="No Fees" width="140" height="140">
@@ -41,7 +48,8 @@
             taking payments. We offer one subscription package. No nonsense tier system.
             Once you subscribe, you get full access to everything Intra has to offer.
         </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <br/>
+        <p><a class="callToAction" href="#" role="button">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 

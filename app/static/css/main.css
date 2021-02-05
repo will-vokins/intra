@@ -68,7 +68,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    height: 400px;
+    height: 350px;
 }
 
 #intraLogo {
@@ -83,6 +83,10 @@
     font-weight: bold;
     line-height: 33px !important;
     height: 33px;
+}
+
+.navbar {
+    border-bottom: solid 2px #2b2b2b;
 }
 
 #loginButton {
@@ -218,7 +222,7 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    border-radius: 5px;
+    border-radius: 6px 5px 5px 6px;
 }
 
 .boilerPlate .artArea {
@@ -424,3 +428,97 @@ textarea:focus, input:focus{
         width: 100%;
     } 
   }
+
+  /* Animated Cubes */
+  .cube {
+    position: absolute;
+    top: 80vh;
+    left: 45vw;
+    width: 10px;
+    height: 10px;
+    border: solid 1px #86c232;
+    border-radius: 360px;
+    transform-origin: top left;
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    animation: cube 12s ease-in forwards infinite;
+  }
+  .cube:nth-child(2n) {
+    border-color: #86c232 ;
+  }
+  .cube:nth-child(2) {
+    animation-delay: 2s;
+    left: 25vw;
+    top: 40vh;
+  }
+  .cube:nth-child(3) {
+    animation-delay: 4s;
+    left: 75vw;
+    top: 50vh;
+  }
+  .cube:nth-child(4) {
+    animation-delay: 6s;
+    left: 90vw;
+    top: 10vh;
+  }
+  .cube:nth-child(5) {
+    animation-delay: 8s;
+    left: 10vw;
+    top: 85vh;
+  }
+  .cube:nth-child(6) {
+    animation-delay: 10s;
+    left: 50vw;
+    top: 10vh;
+  }
+
+  @keyframes cube {
+    from {
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
+    }
+    to {
+      transform: scale(20) rotate(960deg) translate(-50%, -50%);
+      opacity: 0;
+    }
+  }
+
+  .background {
+    background-color: #222629;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    padding:0;
+    margin:0px;
+    background-size: 400% 400%;
+  }
+.nopadding {
+    padding: 0 !important;
+}
+
+/* Animate Background*/
+@keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+.callToAction {
+    background-color: #61892f;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px !important;
+}
+
+.callToAction:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #86c232;
+}
