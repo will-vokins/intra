@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect 
 from flask_pymongo import PyMongo
 
 import db
