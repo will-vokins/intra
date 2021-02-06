@@ -3,6 +3,7 @@
     <head>
         <title>Intra | Sign in</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+        <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
         <script src="{{url_for('static', filename='js/fader.js')}}"></script> 
     </head>
     <body class="remove_mp">
@@ -11,6 +12,17 @@
         fadeInPage();
       </script>
         <div class="splashBackground">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="boilerFlash">
+                        <ul class=flashes>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% endwith %}
             <div class="boilerPlate">
                 <div class="artArea">
                     <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
@@ -18,7 +30,7 @@
                 <div class="formArea">
                     <div class="formContainer">
                         <h2>Log In</h2>
-                        <h3 class="muted smallcaps">don't have an account? <a href="#">sign up for free</a></h3>
+                        <h3 class="muted smallcaps">don't have an account? <a href="{{url_for('registration')}}">sign up for free</a></h3>
                         <br />
                         <form id="loginForm" action="#" method="POST">
                             <input type="text" name="username" placeholder="Email Address" autocomplete="off">

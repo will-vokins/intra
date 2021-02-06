@@ -311,6 +311,49 @@ textarea:focus, input:focus{
     color: #86c232 !important;
 }
 
+.registerPlate {
+    height: 540px !important;
+}
+
+.boilerFlash {
+    position: relative;
+    background-color: #5f773e;
+    color: white;
+    border: solid 1px #86c232;
+    border-radius: 5px;
+    width: 700px;
+    margin: 30px auto 0px auto;
+    margin-top: 30px;
+    height: 40px;
+
+    /* Animations for fade */
+    animation: boilerFlash 0.5s 1;
+    -webkit-animation: boilerFlash 0.5s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+    -webkit-animation-delay: 4s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+}
+
+.boilerFlash ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+.boilerFlash ul li {
+    line-height: 40px;
+}
+
+@keyframes boilerFlash{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes boilerFlash{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
 .formContainer .container {
     display: block;
     position: relative;

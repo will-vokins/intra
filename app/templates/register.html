@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Intra | Register</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+        <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
+        <script src="{{url_for('static', filename='js/fader.js')}}"></script> 
+    </head>
+    <body class="remove_mp">
+      <svg id="fader"></svg>
+      <script>
+        fadeInPage();
+      </script>
+        <div class="splashBackground">
+            <div class="boilerPlate registerPlate">
+                <div class="artArea">
+                    <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
+                </div>
+                <div class="formArea">
+                    <div class="formContainer">
+                        <h2>Register Account</h2>
+                        <h3 class="muted smallcaps">already have an account? <a href="{{url_for('login')}}">sign in</a></h3>
+                        <br />
+                        <form id="loginForm" action="#" method="POST">
+                            {{ form.csrf_token }}
+                            {{form.username(placeholder='Username')}}
+                            {{form.email(placeholder='Email Address')}}
+                            {{form.password(placeholder='Password')}}
+                            {{form.passwordConfirm(placeholder='Confirm Password')}}
+                            <input type="submit" class="loginButton smallcaps" value="Go">
+                            <span class="muted smallcaps orDivider">or</span>
+                            <input type="button" class="loginButton smallcaps mb10 discordLoginButton" value="sign up with discord">
+                            <input type="button" class="loginButton smallcaps facebookLoginButton mb10" value="sign up with facebook">
+                            <input type="button" class="loginButton smallcaps googleLoginButton" value="sign up with google">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
