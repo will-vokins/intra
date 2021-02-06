@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Intra | Sign in</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-        <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
-        <script src="{{url_for('static', filename='js/fader.js')}}"></script> 
-    </head>
-    <body class="remove_mp">
-      <svg id="fader"></svg>
-      <script>
+
+<head>
+    <title>Intra | Sign in</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
+    <script src="{{url_for('static', filename='js/fader.js')}}"></script>
+</head>
+
+<body class="remove_mp">
+    <svg id="fader"></svg>
+    <script>
         fadeInPage();
-      </script>
-        <div class="splashBackground">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    <div class="boilerFlash">
-                        <ul class=flashes>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% endwith %}
-            <div class="boilerPlate">
-                <div class="artArea">
-                    <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
-                </div>
-                <div class="formArea">
-                    <div class="formContainer">
-                        <h2>Log In</h2>
-                        <h3 class="muted smallcaps">don't have an account? <a href="{{url_for('registration')}}">sign up for free</a></h3>
+    </script>
+    <div class="splashBackground">
+        {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %}
+        <div class="boilerFlash">
+            <ul class=flashes>
+                {% for category, message in messages %}
+                <li class="{{category}}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %} {% endwith %}
+        <div class="boilerPlate">
+            <div class="artArea">
+                <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
+            </div>
+            <div class="formArea">
+                <div class="formContainer">
+                    <h2>Log In</h2>
+                    <h3 class="muted smallcaps">don't have an account? <a href="{{url_for('registration')}}">sign up for free</a></h3>
+                    <br />
+                    <form id="loginForm" action="#" method="POST">
+                        <input type="text" name="username" placeholder="Email Address" autocomplete="off">
+                        <input type="password" name="password" placeholder="Password">
+                        <a class="muted smallcaps no-decoration forgotPasswordLink" href="#">forgot?</a>
                         <br />
-                        <form id="loginForm" action="#" method="POST">
-                            <input type="text" name="username" placeholder="Email Address" autocomplete="off">
-                            <input type="password" name="password" placeholder="Password">
-                            <a class="muted smallcaps no-decoration forgotPasswordLink" href="#">forgot?</a>
-                            <br />
-                            <label class="container"><span class="muted smallcaps rememberMeText">remember me</span>
+                        <label class="container"><span class="muted smallcaps rememberMeText">remember me</span>
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                               </label>
-                            <input type="button" class="loginButton smallcaps" value="log in">
-                            <span class="muted smallcaps orDivider">or</span>
-                            <input type="button" class="loginButton smallcaps mb10 discordLoginButton" value="log in with discord">
-                            <input type="button" class="loginButton smallcaps facebookLoginButton mb10" value="log in with facebook">
-                            <input type="button" class="loginButton smallcaps googleLoginButton" value="log in with google">
-                            
-                        </form>
-                    </div>
+                        <input type="button" class="loginButton smallcaps" value="log in">
+                        <span class="muted smallcaps orDivider">or</span>
+                        <input type="button" class="loginButton smallcaps mb10 discordLoginButton" value="log in with discord">
+                        <input type="button" class="loginButton smallcaps facebookLoginButton mb10" value="log in with facebook">
+                        <input type="button" class="loginButton smallcaps googleLoginButton" value="log in with google">
+
+                    </form>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
