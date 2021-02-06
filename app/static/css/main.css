@@ -79,6 +79,7 @@
     width: 120px;
     height: auto;
     position: absolute;
+    margin-top: 6px;
 }
 
 #navbar a {
@@ -104,6 +105,20 @@
     padding: 3px 9px 3px 9px;
     border-radius: 360px;
     width: 80px;
+    text-align: center;
+}
+
+#dashboardButton {
+    color: white;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    float: right;
+    font-weight: bold;
+    background-color: #61892f;
+    padding: 3px 9px 3px 9px;
+    border-radius: 360px;
+    width: 130px;
     text-align: center;
 }
 
