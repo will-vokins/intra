@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Intra | Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/app.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/grid.css')}}" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/centLogo.png')}}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/fader.js')}}"></script>
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+
+</head>
+
+<body>
+    <svg id="fader"></svg>
+    <script>
+        fadeInPage();
+    </script>
+    <div class="navMenu">
+    </div>
+    <div class="area">
+        <div class="topBar">
+            <i class="fa fa-bars burgerButton"></i>
+            <div class="topBarBranding">
+                <a href="javascript:void(0);" class="icon" onclick="mobileMenu()"></a>
+                <h1><img src="{{url_for('static', filename='img/centLogo.png')}}" id="topBarIcon">Intra</h1>
+                </a>
+            </div>
+            <div class="searchBar">
+                <i class="fa fa-search"></i>
+                <form id="searchForm" action="#search">
+                    <input type="text" id="searchBox" placeholder="Search" />
+                    <input class="submit_on_enter" type="submit" style="position: absolute; left: -9999px" />
+                </form>
+            </div>
+            <div class="profileBar">
+                <a href="{{url_for('profile')}}">
+                    <span class="usernameBar">{{ session.username }}</a></span>
+                    <img id="avatarBar" src="{{ session['avatar'] }}" />
+                </a>
+                <div class="settingsButton">
+                    <i class="fa fa-power-off"></i>
+                </div>
+                <div class="settingsButton">
+                    <i class="fa fa-cog"></i>
+                </div>
+                <div class="logoutButton">
+
+                </div>
+            </div>
+        </div>
+        <nav id="mobileNav" class="mobile-menu">
+            <a href="{{url_for('dashboard')}}">Dashboard</a>
+            <a href="#">Messenger</a>
+            <a href="{{url_for('clients')}}">Clients</a>
+            <a href="#">Projects</a>
+            <a href="#">Schedule</a>
+            <a href="#">Invoices &amp; Payments</a>
+            <a href="{{url_for('logout')}}">Log out</a>
+        </nav>
+        <div class="nav-menu">
+            <ul>
+                <li class="nav-header">menu</li>
+                <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+                <li><a href="#">Messenger</a></li>
+                <li><a class="active" href="{{url_for('clients')}}">Clients</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Invoices &amp; Payments</a></li>
+                <li><a href="{{url_for('logout')}}">Log out</a></li>
+            </ul>
+        </div>
+        <div class="content-wrapper">
+            {% block content %} {% endblock content %}
+        </div>
+        <nav id="fsNav" class="main-menu" style="display:none;">
+            <img src="{{url_for('static', filename='img/centLogo.png')}}" id="logoIcon" />
+            <ul>
+                <li class="removeHoverBG" id="menuBranding">
+                    <a class="removeHoverBG" href="{{url_for('dashboard')}}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('dashboard')}}">
+                        <i class="fa fa-tachometer fa-2x"></i>
+                        <span class="nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comments fa-2x"></i>
+                        <span class="nav-text">
+                           Messenger
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="{{url_for('clients')}}">
+                        <i class="fa fa-users fa-2x"></i>
+                        <span class="nav-text">
+                            Clients
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                        <i class="fa fa-folder-open fa-2x"></i>
+                        <span class="nav-text">
+                            Projects
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                        <i class="fa fa-clock-o fa-2x"></i>
+                        <span class="nav-text">
+                            Schedule
+                        </span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-btc fa-2x"></i>
+                        <span class="nav-text">
+                           Invoicing and Payments
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+</body>
+
+
+</html>

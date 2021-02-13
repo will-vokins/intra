@@ -1,0 +1,13 @@
+{% extends "appLayout.html" %} {% block content %}
+<h1>Profile</h1>
+<div class="content-box">
+    <div class="profileAvatarBox">
+        <a href="#">
+            <div class="uploadPicture">
+                <span>Upload New Avatar</span>
+            </div>
+        </a>
+        <img src="{{session['avatar']}}" />
+    </div>
+</div>
+{% endblock content %}

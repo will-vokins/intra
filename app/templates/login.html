@@ -36,11 +36,8 @@
                         {{ form.csrf_token }} {{ form.username(placeholder='Username') }} {{ form.password(placeholder='Password') }}
                         <a class="muted smallcaps no-decoration forgotPasswordLink" href="#">forgot?</a>
                         <br />
-                        <label class="container"><span class="muted smallcaps rememberMeText">remember me</span>
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                              </label>
-                        <input type="submit" class="loginButton smallcaps" value="log in">
+                        <br/>
+                        <input type="submit" class="loginButton smallcaps" onclick="loadLoader()" value="log in">
                         <span class="muted smallcaps orDivider">or</span>
                         <input type="button" class="loginButton smallcaps mb10 discordLoginButton" value="log in with discord">
                         <input type="button" class="loginButton smallcaps facebookLoginButton mb10" value="log in with facebook">
