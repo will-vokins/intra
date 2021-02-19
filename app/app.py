@@ -2,22 +2,41 @@
 # Contact:  will.vokins@outlook.com
 # This is private code, no licensing is provided.
 
+# IMPORTS
 import db
 import forms
 import cloudinary as Cloud
+import secrets
+import base64
+import re
 
+# FROM
 from flask import Flask, render_template, flash, redirect, url_for, request, session
-from forms import RegistrationForm, LoginForm, NewClientForm
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail, Message
+from forms import RegistrationForm, LoginForm, NewClientForm
 
-
+# APP CONFIGURATION
 app = Flask(__name__)
-bcrypt = Bcrypt(app)
-
-
 app.config['version'] = 'Alpha 3'
+app.config['URL'] = 'http://localhost:5000/'
 app.config['SECRET_KEY'] = '06428f29a279cddf7fac4b0180db9579' # INSECURE - DO NOT USE IN PRODUCTION
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME = 'vokinsw@gmail.com',
+    MAIL_PASSWORD = 's16W38108089556xd534ysC!!!'
+)
+
+# INITS
+bcrypt = Bcrypt(app)
+mail = Mail(app)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', code=404), 404
 
 @app.route('/')
 def root():
@@ -113,13 +132,68 @@ def profile():
 def clients():
     return render_template("clients/clients.html")
 
-@app.route('/clients/new')
+@app.route('/clients/new', methods=["GET", "POST"])
 def newClient():
+    if 'username' in session:
+        if request.method == 'POST':
+            
+            # Collect email from request, check that it is a valid email address
+            email = request.form.get('email')
+            regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+            if not (re.search(regex,email)):
+                return("Invalid email address given."), 590
+
+            # Check if client is already assigned to current user
+            Query = { "email": email, "user": session['username'] }
+            if db.db.invites.find(Query).count() > 0:
+                return("Failure: Invite already exists."), 400
+            
+            # Insert client and current session user into invites collection
+            generated_key = secrets.token_hex(16)
+            db.db.invites.insert_one({"email": email,
+                                    "user": session['username'],
+                                    "key": generated_key})
+
+            # Send email to client, requesting account setup (clientSetup())
+            msg = Message(session['username'] + ' wants to collaborate!', sender = 'vokinsw@gmail.com', recipients = [email])
+            msg.html = "<h1>You've been Invited</h1><p>" + session['username'] + " has invited you to collaborate.</p><p>Don't worry, getting started takes less than 30 seconds.</p><p>Visit the link below to begin.</p><p>" + app.config['URL'] + session['username'] + "/" + generated_key
+            mail.send(msg)
+            return("Success: " + email), 200
+        else:
+            return("Unauthorized"), 401
+                        
+    return("Failure: Unauthorized"), 401
     
-    # Get NewClientForm from forms.py and assign it to `form`.
-    form = NewClientForm()
-    return render_template("clients/new_client.html", form=form)
+@app.route('/<user>')
+def clientDashboard(user):
 
+    # Check that user exists
+    userQuery = db.db.users.find_one({"username": user})
+    if userQuery == None:
+        # If user does not exist, return 404
+        return render_template("error.html", code=404), 404
 
+    # If user does exist, return user 
+    return(user)
+
+@app.route('/<user>/<key>')
+def clientSetup(user, key):
+
+    # Check if user exists
+    userQuery = db.db.users.find_one({"username": user})
+    if userQuery == None:
+        # If user does not exists, return 404
+        return render_template("error.html", code=404), 404
+
+    # Check if the user->client invite key is valid
+    invite = db.db.invites.find_one({"key": key})
+    if invite == None:
+        # If key isn't valid, return expired key content
+        return ("<center><h1>Invalid or expired key</h1></center>")
+    
+    # If key is valid, initialize client password setup
+    return render_template("/clients/client_setup.html", user=user, key=user, invite=invite)
+
+# if `py app.py` -> debug=True
 if __name__ == '__main__':
     app.run(debug=True)

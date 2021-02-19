@@ -1,3 +1,114 @@
-{% extends "appLayout.html" %} {% block content %}
-<h1>Dashboard</h1>
+{% extends "appLayout.html" %} {% block title %}
+<script>
+    window.onload = function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+                text: "Clients by Day"
+            },
+            data: [{
+                type: "line",
+                indexLabelFontSize: 16,
+                dataPoints: [{
+                    y: 450
+                }, {
+                    y: 414
+                }, {
+                    y: 520,
+                    indexLabel: "\u2191 highest",
+                    markerColor: "red",
+                    markerType: "triangle"
+                }, {
+                    y: 460
+                }, {
+                    y: 450
+                }, {
+                    y: 500
+                }, {
+                    y: 480
+                }, {
+                    y: 480
+                }, {
+                    y: 410,
+                    indexLabel: "\u2193 lowest",
+                    markerColor: "DarkSlateGrey",
+                    markerType: "cross"
+                }, {
+                    y: 500
+                }, {
+                    y: 480
+                }, {
+                    y: 510
+                }]
+            }]
+        });
+        chart.render();
+
+    }
+</script>
+<h1>Clients</h1>
+{% endblock title %} {% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <div class="content-box">
+            <div class="row">
+                <div class="col-md-3 bgGreenA">
+                    <div class="innerInfo">
+                        <p><strong>82</strong> Clients</p>
+                    </div>
+                </div>
+                <div class="col-md-3 bgGreenB">
+                    <div class="innerInfo">
+                        <p><strong>204</strong> Projects</p>
+                    </div>
+                </div>
+                <div class="col-md-3 bgGreenC">
+                    <div class="innerInfo">
+                        <p><strong>840</strong> Hours</p>
+                    </div>
+                </div>
+                <div class="col-md-3 bgGreenD">
+                    <div class="innerInfo">
+                        <p><strong>£17000</strong> Net</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="content-box p0">
+            <div class="row mbm">
+                <div class="col-md-12">
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="nav-header">actions</li>
+                            <li id="inviteCtl"><a id="inviteLink" href="#">Invite New Client</a></li>
+                            <li id="inviteBox">
+                                <form id="newClientForm" class="sidebarForm" method="POST">
+                                    <input type="email" name="email" placeholder="New Client Email" required/>
+                                    <button id="newClientSubmit">Invite</button>
+                                    <button id="workerButton" onClick="return false"><div class="myloader">Loading...</div></button>
+                                    <div class="returnMessages">
+
+                                    </div>
+                                </form>
+                            </li>
+                            <li><a href="#">Export Clients</a></li>
+                            <li><a href="#">Broadcast Email</a></li>
+                            <li><a href="#">Broadcast Invoice</a></li>
+                            <li><a href="#">Schedule</a></li>
+                            <li><a href="#">Invoices &amp; Payments</a></li>
+                            <li><a href="">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
