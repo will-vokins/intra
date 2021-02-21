@@ -2,8 +2,87 @@
 
 <head>
     <title>Intra | Error {{code}}</title>
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/centLogo.png')}}">
+    <style>
+        body
+        {
+            background: rgb(134,194,50);
+            background: linear-gradient(90deg, rgba(134,194,50,1) 0%, rgba(108,161,41,1) 100%);         }
+        }
+
+        .container 
+        {
+            height: 200px;
+            position: relative;
+            border: 3px solid green;
+        }
+
+        .vertical-center 
+        {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .buttons 
+        {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .buttons button 
+        {
+            border: solid 1px white;
+            background: none;
+            border-radius: 360px;
+            padding: 10px 20px;
+            font-variant: small-caps;
+            text-transform: lowercase;
+            font-weight: bold;
+            color: white;
+        }
+
+        .buttons button:hover {
+            cursor: pointer;
+            background-color: white;
+            color: rgb(134,194,50);
+        }
+
+        .mr 
+        {
+            margin-right: 20px;
+        }
+
+        h1
+        {
+            font-size: 6em;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2
+        {
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Error {{code}}!</h1>
+    <div class="container">
+        <div class="vertical-center">
+            <h1>{{code}}</h1>
+            <h2>Resource could not be found.</h2>
+            <div class="buttons">
+                <a href="{{ url_for('root') }}" class="mr"><button>Home Page</button></a><a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
+            </div>
+        </div>
+    </div>
 </body>

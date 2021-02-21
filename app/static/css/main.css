@@ -20,6 +20,13 @@
     animation-timing-function: ease-in-out;
 }
 
+.formError {
+    color: red;
+    font-variant: small-caps;
+    font-size: 14px;
+    text-transform: lowercase;
+}
+
 @keyframes fade-out {
     from {
         opacity: 1

@@ -8,9 +8,7 @@ function mobileMenu() {
 }
 
 $(document).ready(function() {
-
     $('.submit_on_enter').keydown(function(event) {
-        // enter has keyCode = 13, change it if you want to use another button
         if (event.keyCode == 13) {
             this.form.submit();
             return false;
@@ -24,7 +22,7 @@ $(document).ready(function() {
     $("#inviteLink").click(function() {
         $("#inviteBox").animate({
             height: "40px"
-        }, 500, function() {
+        }, 200, function() {
 
         });
     });
@@ -51,7 +49,7 @@ $(function() {
                     $('#flash').removeClass("flash--visible")
                     $("#inviteBox").animate({
                         height: "0px"
-                    }, 500, function() {});
+                    }, 200, function() {});
 
                 }, 2000);
             },

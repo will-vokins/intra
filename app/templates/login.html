@@ -4,7 +4,7 @@
 <head>
     <title>Intra | Sign in</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/centLogo.png')}}">
     <script src="{{url_for('static', filename='js/fader.js')}}"></script>
 </head>
 
@@ -14,15 +14,17 @@
         fadeInPage();
     </script>
     <div class="splashBackground">
-        {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %}
-        <div class="boilerFlash">
-            <ul class=flashes>
-                {% for category, message in messages %}
-                <li class="{{category}}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %} {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=True) %} 
+            {% if messages %}
+            <div class="boilerFlash">
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                    <li class="{{category}}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %} 
+        {% endwith %}
         <div class="boilerPlate">
             <div class="artArea">
                 <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
@@ -33,7 +35,9 @@
                     <h3 class="muted smallcaps">don't have an account? <a href="{{url_for('registration')}}">sign up for free</a></h3>
                     <br />
                     <form id="loginForm" action="#" method="POST">
-                        {{ form.csrf_token }} {{ form.username(placeholder='Username') }} {{ form.password(placeholder='Password') }}
+                        {{ form.csrf_token }} 
+                        {{ form.username(placeholder='Username') }}
+                        {{ form.password(placeholder='Password') }}
                         <a class="muted smallcaps no-decoration forgotPasswordLink" href="#">forgot?</a>
                         <br />
                         <br/>

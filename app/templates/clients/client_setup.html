@@ -1,10 +1,62 @@
 <!DOCTYPE html>
+<html>
 
 <head>
-    <title>Intra | Account Setup</title>
+    <title>Intra | Setup Account</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/icons/favicon.png')}}">
+    <script src="{{url_for('static', filename='js/fader.js')}}"></script>
+    <style>
+        .boilerPlate {
+            height: 350px;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>Client Setup</h1>
-    <p>Create password for user: {{invite.email}}</p>
+<body class="remove_mp">
+    <svg id="fader"></svg>
+    <script>
+        fadeInPage();
+    </script>
+    <div class="splashBackground">
+        {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %}
+        <div class="boilerFlash">
+            <ul class=flashes>
+                {% for category, message in messages %}
+                <li class="{{category}}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %} {% endwith %}
+        <div class="boilerPlate">
+            <div class="artArea">
+                <a href="/"><img src="{{url_for('static', filename='img/intraLight.png')}}" id="intraLogo" /></a>
+            </div>
+            <div class="formArea">
+                <div class="formContainer">
+                    <h2>You've been Invited!</h2>
+                    <h3 class="muted smallcaps">{{user.username}} wants to collaborate with you!</h3>
+                    <br />
+                    <h3 class="muted smallcaps">enter a password to get started:</h3>
+                    <form id="loginForm" action="#" method="POST">
+                        {{ form.csrf_token }}
+                        {{ form.password(placeholder='Password') }}
+                        {{ form.passwordConfirm(placeholder='Confirm Password') }} 
+
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <span class="formError">{{ error }}</span> 
+                            {% endfor %}
+                        {% endif %}
+                        <a class="muted smallcaps no-decoration forgotPasswordLink" href="#">forgot?</a>
+                        <br />
+                        <br/>
+                        <input type="submit" class="loginButton smallcaps" onclick="loadLoader()" value="log in">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+</html>

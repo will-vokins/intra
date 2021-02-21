@@ -1,4 +1,10 @@
-{% extends "appLayout.html" %} {% block content %}
+{% extends "appLayout.html" %} 
+
+{% block title %}
+{{session['username']}}
+{% endblock title %}
+
+{% block content %}
 <h1>Profile</h1>
 <div class="content-box">
     <div class="profileAvatarBox">

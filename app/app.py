@@ -15,7 +15,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
-from forms import RegistrationForm, LoginForm, NewClientForm
+from forms import RegistrationForm, LoginForm, ClientSetupForm
 
 # APP CONFIGURATION
 app = Flask(__name__)
@@ -116,6 +116,8 @@ def registration():
             return redirect(url_for('dashboard'))
 
     # Render the registration page if no form data is received
+    for error in form.password.errors:
+        flash(error, 'error')
     return render_template("register.html", form=form), 200
 
 @app.route('/logout')
@@ -132,7 +134,7 @@ def profile():
 def clients():
     return render_template("clients/clients.html")
 
-@app.route('/clients/new', methods=["GET", "POST"])
+@app.route('/clients/new', methods=["POST"])
 def newClient():
     if 'username' in session:
         if request.method == 'POST':
@@ -176,23 +178,35 @@ def clientDashboard(user):
     # If user does exist, return user 
     return(user)
 
-@app.route('/<user>/<key>')
+@app.route('/<user>/<key>', methods=["GET", "POST"])
 def clientSetup(user, key):
 
+    form = ClientSetupForm()
+
     # Check if user exists
-    userQuery = db.db.users.find_one({"username": user})
+    userQuery = db.db.users.find_one({"username": user,})
     if userQuery == None:
         # If user does not exists, return 404
         return render_template("error.html", code=404), 404
 
-    # Check if the user->client invite key is valid
-    invite = db.db.invites.find_one({"key": key})
+    # Check if the user->client invite key is valid and belongs to the correct user
+    invite = db.db.invites.find_one({"user": user, 
+                                     "key": key})
     if invite == None:
         # If key isn't valid, return expired key content
         return ("<center><h1>Invalid or expired key</h1></center>")
     
-    # If key is valid, initialize client password setup
-    return render_template("/clients/client_setup.html", user=user, key=user, invite=invite)
+    # If key and user are valid:
+    if request.method == "POST":
+        if form.validate_on_submit():
+            print(user + "VALIDATED FORM")
+            db.db.clients.insert_one({"email": invite['email'],
+                                      "user": user,
+                                      "password": bcrypt.generate_password_hash(form.password.data).decode('utf-8' ),
+                                      "avatar": "/static/img/defaultAvatar.png"})
+            deletion = db.db.invites.delete_one({"user": user, "key": key})
+
+    return render_template("/clients/client_setup.html", user=userQuery, key=user, invite=invite, form=form)
 
 # if `py app.py` -> debug=True
 if __name__ == '__main__':
