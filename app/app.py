@@ -27,7 +27,7 @@ app.config.update(
     MAIL_PORT=465,
     MAIL_USE_SSL=True,
     MAIL_USERNAME = 'vokinsw@gmail.com',
-    MAIL_PASSWORD = 's16W38108089556xd534ysC!!!'
+    MAIL_PASSWORD = 'censored'
 )
 
 # INITS
